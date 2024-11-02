@@ -1,0 +1,25 @@
+<!-- todo_app/templates/todo_app/task_list.html -->
+
+{% extends 'todo_app/base.html' %}
+
+{% block content %}
+    <a href="{% url 'add_task' %}">Add New Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {% if task.completed %}
+                    <s>{{ task.title }}</s>
+                {% else %}
+                    {{ task.title }}
+                {% endif %}
+                - <a href="{% url 'edit_task' task.id %}">Edit</a>
+                - <a href="{% url 'delete_task' task.id %}">Delete</a>
+                {% if not task.completed %}
+                    - <a href="{% url 'complete_task' task.id %}">Complete</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>No tasks yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

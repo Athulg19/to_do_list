@@ -1,0 +1,11 @@
+
+{% extends 'todo_app/base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Edit Task:</label>
+        <input type="text" name="title" id="title" value="{{ task.title }}" required>
+        <button type="submit">Update Task</button>
+    </form>
+{% endblock %}
